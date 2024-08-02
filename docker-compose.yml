@@ -1,0 +1,22 @@
+services:
+  macos:
+    image: dockurr/macos
+    container_name: macos
+    environment:
+      VERSION: "ventura"
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8006:8006
+    volumes:
+      - ./data:/storage
+    stop_grace_period: 2m
+    networks:
+      - tun
+
+networks:
+  tun:
+    attachable: true
+    external: true
